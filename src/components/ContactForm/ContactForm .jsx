@@ -1,23 +1,25 @@
 import { nanoid } from "nanoid";
-import { useDispatch, useSelector } from "react-redux";
-import { contactValue, addContact } from "redux/slice";
-
+import { useAddContactMutation, useGetContactsQuery } from "redux/slice";
 
 function ContactForm() {
-  const dispatch = useDispatch();
- 
+  const [addContact] = useAddContactMutation();
+  const { data } = useGetContactsQuery();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const { name, number } = e.currentTarget.elements;
-    // if (data.find((el) => el.toLowerCase() === name.value.toLowerCase())) {
-    //   e.currentTarget.reset();
-    //   return alert(`${name.value} is already in contacts`);
-    // }
-    // dispatch(
-    //   addContact({ name: name.value, number: number.value, id: nanoid(5) })
-    // );
+
+    if (data) {
+      const nameAdd = data.map((el) => el.name);
+      if (nameAdd.find((el) => el.toLowerCase() === name.value.toLowerCase())) {
+        alert(`${name.value} is already in contacts`);
+        e.currentTarget.reset();
+        return;
+      }
+    }
+
+    addContact({ name: name.value, number: number.value, id: nanoid(5) });
 
     e.currentTarget.reset();
   };
