@@ -1,22 +1,23 @@
-import { nanoid } from 'nanoid';
-import { useDispatch, useSelector } from 'react-redux';
-import { contactValue, addContact } from 'redux/slice';
+import { nanoid } from "nanoid";
+import { useDispatch, useSelector } from "react-redux";
+import { contactValue, addContact } from "redux/slice";
+
 
 function ContactForm() {
-  const nameAdd = useSelector(contactValue).map(el => el.name);
-
   const dispatch = useDispatch();
+ 
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
+
     const { name, number } = e.currentTarget.elements;
-    if (nameAdd.find(el => el.toLowerCase() === name.value.toLowerCase())) {
-      e.currentTarget.reset();
-      return alert(`${name.value} is already in contacts`);
-    }
-    dispatch(
-      addContact({ name: name.value, number: number.value, id: nanoid(5) })
-    );
+    // if (data.find((el) => el.toLowerCase() === name.value.toLowerCase())) {
+    //   e.currentTarget.reset();
+    //   return alert(`${name.value} is already in contacts`);
+    // }
+    // dispatch(
+    //   addContact({ name: name.value, number: number.value, id: nanoid(5) })
+    // );
 
     e.currentTarget.reset();
   };
