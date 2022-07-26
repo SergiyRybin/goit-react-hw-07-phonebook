@@ -7,7 +7,7 @@ const ContactCard = ({ contact }) => {
   const [delContact] = useDelContactMutation();
   return (
     <li>
-      {contact.name}: {contact.phone}
+      {contact.name}: {contact.number}
       <button
         type="submite"
         className="delete"

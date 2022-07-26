@@ -17,9 +17,7 @@ function ContactForm() {
         return;
       }
     }
-
     addContact({ name: name.value, number: number.value, id: nanoid(5) });
-
     e.currentTarget.reset();
   };
 
