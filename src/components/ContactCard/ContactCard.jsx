@@ -3,10 +3,11 @@ import React from "react";
 import { useDelContactMutation } from "redux/slice";
 
 const ContactCard = ({ contact }) => {
+
   const [delContact] = useDelContactMutation();
   return (
     <li>
-      {contact.name}: {contact.number}
+      {contact.name}: {contact.phone}
       <button
         type="submite"
         className="delete"

@@ -9,7 +9,6 @@ function ContactForm() {
     e.preventDefault();
 
     const { name, number } = e.currentTarget.elements;
-
     if (data) {
       const nameAdd = data.map((el) => el.name);
       if (nameAdd.find((el) => el.toLowerCase() === name.value.toLowerCase())) {
