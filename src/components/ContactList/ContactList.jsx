@@ -7,13 +7,10 @@ function ContactList() {
   const { data } = useGetContactsQuery();
 
   const filterValue = useSelector((state) => state.filter.filter);
-  let response = data;
 
-  if (data) {
-    response = data.filter(({ name }) =>
-      name.toLowerCase().startsWith(filterValue.toLowerCase())
-    );
-  }
+  const response = data?.filter(({ name }) =>
+    name.toLowerCase().startsWith(filterValue.toLowerCase())
+  );
 
   return (
     <ul>
