@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createApi } from "@reduxjs/toolkit/query/react";
 import axios from "axios";
-
 export const mySlice = createSlice({
   name: "myValue",
   initialState: {
@@ -67,23 +66,3 @@ export const {
   useAddContactMutation,
   useDelContactMutation,
 } = contactsApi;
-
-export const createUserApi = createApi({
-  reducerPath: "users",
-  baseQuery: axiosBaseQuery({
-    baseUrl: "https://connections-api.herokuapp.com",
-  }),
-  tagTypes: ["Contacts"],
-  endpoints: (builder) => ({
-    addUser: builder.mutation({
-      query: (value) => ({
-        url: "/users/signup",
-        method: "POST",
-        data: value,
-      }),
-      invalidatesTags: ["Contacts"],
-    }),
-  }),
-});
-
-export const { useAddUserMutation } = createUserApi;
